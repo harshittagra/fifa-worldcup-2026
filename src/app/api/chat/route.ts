@@ -24,5 +24,5 @@ When answering:
     messages,
   });
 
-  return result.toTextStreamResponse();
+  return result.toUIMessageStreamResponse();
 }
