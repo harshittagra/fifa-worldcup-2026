@@ -2,11 +2,11 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Globe from 'react-globe.gl';
-import { useWindowSize } from 'react-use'; // wait, I don't have react-use, I'll just use window resize event
+
 
 export default function Globe3D() {
   const [isMounted, setIsMounted] = useState(false);
-  const globeEl = useRef<any>();
+  const globeEl = useRef<any>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 800 });
 
   useEffect(() => {
