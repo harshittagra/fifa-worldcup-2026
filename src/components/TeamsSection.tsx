@@ -147,6 +147,12 @@ function TeamCard({ stats, index }: { stats: TeamStats; index: number }) {
                     <span className="text-white font-medium truncate">{team.starPlayers.slice(0, 3).join(', ')}</span>
                   </div>
                 )}
+                
+                <div className="pt-2">
+                  <a href={`/teams/${encodeURIComponent(stats.name)}`} className="block w-full py-2 text-center text-xs font-bold text-bg-primary bg-accent-gold rounded-lg hover:bg-white transition-colors">
+                    View Full Profile & History
+                  </a>
+                </div>
               </div>
             </motion.div>
           )}

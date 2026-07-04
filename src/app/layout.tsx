@@ -34,6 +34,8 @@ export const metadata: Metadata = {
   },
 };
 
+import AIChatbot from "@/components/AIChatbot";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -43,6 +45,7 @@ export default function RootLayout({
     <html lang="en" className={`${outfit.variable} ${inter.variable}`}>
       <body className="noise-overlay antialiased">
         {children}
+        <AIChatbot />
       </body>
     </html>
   );
