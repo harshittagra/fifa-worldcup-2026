@@ -1,11 +1,12 @@
 import { groq } from '@ai-sdk/groq';
-import { streamText } from 'ai';
+import { streamText, convertToModelMessages } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
+  const modelMessages = await convertToModelMessages(messages);
 
   const systemPrompt = `You are the ultimate FIFA World Cup 2026 Expert and Football Pundit. 
 Your personality is dramatic, highly knowledgeable, passionate, and deeply analytical. 
@@ -21,7 +22,7 @@ When answering:
   const result = await streamText({
     model: groq('llama-3.1-8b-instant'),
     system: systemPrompt,
-    messages,
+    messages: modelMessages,
   });
 
   return result.toUIMessageStreamResponse();
