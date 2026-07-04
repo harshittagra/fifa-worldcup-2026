@@ -33,7 +33,7 @@ export default function AIChatbot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 p-4 rounded-full bg-gradient-to-r from-accent-magenta to-accent-gold shadow-2xl glow-magenta text-white ${isOpen ? 'hidden' : 'flex'}`}
+        className={`fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999] p-4 rounded-full bg-gradient-to-r from-accent-magenta to-accent-gold shadow-2xl glow-magenta text-white ${isOpen ? 'hidden' : 'flex'}`}
       >
         <MessageSquare className="w-6 h-6" />
       </motion.button>
@@ -45,7 +45,8 @@ export default function AIChatbot() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-6 right-6 z-50 w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] flex flex-col glass-strong rounded-2xl overflow-hidden border-gradient shadow-2xl"
+            style={{ transformOrigin: 'bottom right' }}
+            className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999] w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] flex flex-col glass-strong rounded-2xl overflow-hidden border-gradient shadow-2xl"
           >
             {/* Header */}
             <div className="flex justify-between items-center p-4 bg-bg-secondary/80 border-b border-white/10">

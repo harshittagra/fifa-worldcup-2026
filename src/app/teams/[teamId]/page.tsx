@@ -32,7 +32,7 @@ export default async function TeamPage({ params }: { params: Promise<{ teamId: s
   
   try {
     const { text } = await generateText({
-      model: groq('llama3-8b-8192'),
+      model: groq('llama-3.1-8b-instant'),
       system: 'You are a concise, expert football pundit. Format output clearly with simple markdown.',
       prompt: `Provide a quick profile for the ${decodedId} national football team heading into the 2026 World Cup. 
       Break your response into exactly three sections:
@@ -122,20 +122,40 @@ export default async function TeamPage({ params }: { params: Promise<{ teamId: s
             </div>
           </div>
 
-          {/* Stars */}
+          {/* Visual Squad Section */}
           <div className="glass rounded-2xl p-8">
-            <h2 className="font-display text-2xl font-bold text-white mb-4 flex items-center gap-2">
+            <h2 className="font-display text-2xl font-bold text-white mb-6 flex items-center gap-2">
               <Star className="w-6 h-6 text-accent-magenta" />
-              Key Players
+              Featured Squad
             </h2>
-            <div className="prose prose-invert prose-p:text-text-secondary text-sm">
-              <div dangerouslySetInnerHTML={{ __html: aiStars.replace(/\n/g, '<br/>').replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>') }} />
+            
+            <div className="flex flex-col gap-4">
+              {team.starPlayers.map((player, index) => {
+                // Generate a consistent dummy avatar based on player name length
+                const avatarId = (player.length * 7 + index * 13) % 70; 
+                const positions = ['Forward', 'Midfielder', 'Defender', 'Goalkeeper'];
+                const pos = positions[index % 3]; // Just mock positions for now
+                
+                return (
+                  <div key={player} className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                    <img 
+                      src={`https://i.pravatar.cc/150?u=${avatarId}`} 
+                      alt={player}
+                      className="w-12 h-12 rounded-full border-2 border-accent-gold/50 object-cover"
+                    />
+                    <div>
+                      <h4 className="text-white font-bold text-sm">{player}</h4>
+                      <p className="text-xs text-text-secondary">{pos}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
             
-            <div className="mt-8 p-4 bg-accent-gold/10 rounded-xl border border-accent-gold/20">
-              <p className="text-xs text-accent-gold font-medium mb-1">AI Generated Profile</p>
+            <div className="mt-8 p-4 bg-accent-magenta/10 rounded-xl border border-accent-magenta/20">
+              <p className="text-xs text-accent-magenta font-medium mb-1">Squad Roster</p>
               <p className="text-[10px] text-text-secondary">
-                Historical and tactical data generated in real-time by the Groq AI Engine.
+                Full 2026 World Cup squad lists will be officially confirmed in May 2026.
               </p>
             </div>
           </div>
