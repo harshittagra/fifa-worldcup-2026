@@ -33,8 +33,7 @@ export default function AIChatbot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
-        style={{ position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 9999 }}
-        className={`p-4 rounded-full bg-gradient-to-r from-accent-magenta to-accent-gold shadow-2xl glow-magenta text-white ${isOpen ? 'hidden' : 'flex'}`}
+        className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-[9999] p-4 rounded-full bg-gradient-to-r from-accent-magenta to-accent-gold shadow-2xl glow-magenta text-white ${isOpen ? 'hidden' : 'flex'}`}
       >
         <MessageSquare className="w-6 h-6" />
       </motion.button>
@@ -46,8 +45,7 @@ export default function AIChatbot() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            style={{ position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 9999, transformOrigin: 'bottom right' }}
-            className="w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] flex flex-col glass-strong rounded-2xl overflow-hidden border-gradient shadow-2xl"
+            className="fixed bottom-4 right-4 left-4 sm:left-auto sm:right-8 sm:bottom-8 w-auto sm:w-[400px] h-[550px] max-h-[80vh] origin-bottom-right flex flex-col glass-strong rounded-2xl overflow-hidden border-gradient shadow-2xl z-[9999]"
           >
             {/* Header */}
             <div className="flex justify-between items-center p-4 bg-bg-secondary/80 border-b border-white/10">
@@ -64,7 +62,7 @@ export default function AIChatbot() {
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="text-text-secondary hover:text-white transition-colors"
+                className="p-1.5 text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -111,12 +109,12 @@ export default function AIChatbot() {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Ask about a team or match..."
-                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-accent-gold transition-colors"
+                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-accent-gold transition-colors"
                 />
                 <button 
                   type="submit"
                   disabled={isLoading || !inputValue.trim()}
-                  className="p-2 bg-accent-gold text-bg-primary rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
+                  className="p-2.5 bg-accent-gold text-bg-primary rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
                 >
                   <Send className="w-5 h-5" />
                 </button>
